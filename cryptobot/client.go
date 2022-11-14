@@ -58,7 +58,9 @@ func (c *Client) request(path string, queryModifierFunc func(q url.Values) url.V
 	if err != nil {
 		return nil, err
 	}
-	req.URL.RawQuery = queryModifierFunc(req.URL.Query()).Encode()
+	if queryModifierFunc != nil {
+		req.URL.RawQuery = queryModifierFunc(req.URL.Query()).Encode()
+	}
 
 	req.Header.Set(apiTokenHeaderName, c.apiToken)
 	r, err := c.httpClient.Do(req)
