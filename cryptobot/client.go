@@ -1,40 +1,46 @@
 package cryptobot
 
 import (
+	"encoding/json"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"time"
 )
 
 const (
-	testingAPIURL      = "https://testnet-pay.crypt.bot/api/"
-	realAPIURL         = "https://pay.crypt.bot/api/"
+	testnetAPIURL      = "https://testnet-pay.crypt.bot/api/"
+	mainnetAPIURL      = "https://pay.crypt.bot/api/"
 	apiTokenHeaderName = "Crypto-Pay-API-Token"
 )
 
+// Client for making requests to CryptoBot API methods
 type Client struct {
-	testingMode bool
 	apiToken    string
+	testingMode bool
 
 	httpClient *http.Client
 }
 
 type Deps struct {
-	Testing  bool
-	ApiToken string
+	// API Token of your CryptoBot app (token from CryptoTestnetBot can also be used)
+	APIToken string
 
-	// Optional. Default is 10 seconds
+	// Default false. determines if client will request Testnet url instead of Mainnet url
+	Testing bool
+
+	// Optional. Default is 30 seconds
 	ClientTimeout time.Duration
 }
 
 func NewClient(deps Deps) *Client {
 	c := &Client{
 		testingMode: deps.Testing,
-		apiToken:    deps.ApiToken,
+		apiToken:    deps.APIToken,
 	}
 
-	clientTimeout := time.Second * 10
+	clientTimeout := time.Second * 30
 	if deps.ClientTimeout != 0 {
 		clientTimeout = deps.ClientTimeout
 	}
@@ -47,9 +53,9 @@ func NewClient(deps Deps) *Client {
 
 func (c *Client) getRequestUrl() string {
 	if c.testingMode {
-		return testingAPIURL
+		return testnetAPIURL
 	} else {
-		return realAPIURL
+		return mainnetAPIURL
 	}
 }
 
@@ -69,4 +75,16 @@ func (c *Client) request(path string, queryModifierFunc func(q url.Values) url.V
 	}
 
 	return r.Body, nil
+}
+
+func (c *Client) decodeResponse(responseBodyReader io.Reader, targetPointer any) error {
+	responseBody, err := ioutil.ReadAll(responseBodyReader)
+	if err != nil {
+		return err
+	}
+	if err := json.Unmarshal(responseBody, targetPointer); err != nil {
+		return err
+	}
+
+	return nil
 }
