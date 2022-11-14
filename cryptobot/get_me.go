@@ -1,9 +1,6 @@
 package cryptobot
 
-import (
-	"encoding/json"
-	"io/ioutil"
-)
+import "fmt"
 
 type GetMeResponse struct {
 	Response
@@ -24,13 +21,13 @@ func (c *Client) GetMe() (*AppInfo, error) {
 	defer responseBodyReader.Close()
 
 	var response GetMeResponse
-	responseBody, err := ioutil.ReadAll(responseBodyReader)
-	if err != nil {
-		return nil, err
-	}
-	if err := json.Unmarshal(responseBody, &response); err != nil {
+	if err := c.decodeResponse(responseBodyReader, &response); err != nil {
 		return nil, err
 	}
 
-	return &response.Result, nil
+	if response.Ok {
+		return &response.Result, nil
+	} else {
+		return nil, fmt.Errorf("getMe request error: code - %v, name - %s", response.Error.Code, response.Error.Name)
+	}
 }
