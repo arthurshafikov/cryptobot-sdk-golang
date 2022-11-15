@@ -48,7 +48,7 @@ func (c *Client) Transfer(transferRequest TransferRequest) (*Transfer, error) {
 		}
 		// default is false
 		if transferRequest.DisableSendNotification {
-			q.Add("allow_anonymous", "true")
+			q.Add("disable_send_notification", "true")
 		}
 
 		return q
