@@ -17,6 +17,6 @@ func main() {
 	getMe(client)
 	getInvoices(client)
 
-	// these methods are disabled in test mode
+	// these methods are disabled by default, check your app's security settings in @CryptoBot
 	transfer(client)
 }

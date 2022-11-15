@@ -2,8 +2,8 @@ package cryptobot
 
 import "fmt"
 
-type GetMeResponse struct {
-	Response
+type getMeResponse struct {
+	response
 	Result AppInfo `json:"result"`
 }
 
@@ -20,7 +20,7 @@ func (c *Client) GetMe() (*AppInfo, error) {
 	}
 	defer responseBodyReader.Close()
 
-	var response GetMeResponse
+	var response getMeResponse
 	if err := c.decodeResponse(responseBodyReader, &response); err != nil {
 		return nil, err
 	}

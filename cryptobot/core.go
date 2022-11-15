@@ -1,12 +1,12 @@
 package cryptobot
 
-type Response struct {
+type response struct {
 	Ok     bool          `json:"ok"`
 	Result any           `json:"result"`
-	Error  ResponseError `json:"error"`
+	Error  responseError `json:"error"`
 }
 
-type ResponseError struct {
+type responseError struct {
 	Code int    `json:"code"`
 	Name string `json:"name"`
 }

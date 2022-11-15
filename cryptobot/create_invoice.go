@@ -44,8 +44,8 @@ type CreateInvoiceRequest struct {
 	ExpiresIn int64 `json:"expires_in"`
 }
 
-type CreateInvoiceResponse struct {
-	Response
+type createInvoiceResponse struct {
+	response
 	Result Invoice `json:"result"`
 }
 
@@ -88,7 +88,7 @@ func (c *Client) CreateInvoice(createInvoiceRequest *CreateInvoiceRequest) (*Inv
 	}
 	defer responseBodyReader.Close()
 
-	var response CreateInvoiceResponse
+	var response createInvoiceResponse
 	if err := c.decodeResponse(responseBodyReader, &response); err != nil {
 		return nil, err
 	}

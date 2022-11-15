@@ -24,12 +24,12 @@ type GetInvoicesRequest struct {
 	Count int `json:"count"`
 }
 
-type GetInvoicesResponse struct {
-	Response
-	Result Invoices `json:"result"`
+type getInvoicesResponse struct {
+	response
+	Result invoices `json:"result"`
 }
 
-type Invoices struct {
+type invoices struct {
 	Items []Invoice `json:"items"`
 }
 
@@ -59,7 +59,7 @@ func (c *Client) GetInvoices(getInvoicesRequest *GetInvoicesRequest) ([]Invoice,
 	}
 	defer responseBodyReader.Close()
 
-	var response GetInvoicesResponse
+	var response getInvoicesResponse
 	if err := c.decodeResponse(responseBodyReader, &response); err != nil {
 		return nil, err
 	}

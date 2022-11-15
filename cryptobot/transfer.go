@@ -31,8 +31,8 @@ type TransferRequest struct {
 	DisableSendNotification bool `json:"disable_send_notification"`
 }
 
-type TransferResponse struct {
-	Response
+type transferResponse struct {
+	response
 	Result Transfer `json:"result"`
 }
 
@@ -58,7 +58,7 @@ func (c *Client) Transfer(transferRequest *TransferRequest) (*Transfer, error) {
 	}
 	defer responseBodyReader.Close()
 
-	var response TransferResponse
+	var response transferResponse
 	if err := c.decodeResponse(responseBodyReader, &response); err != nil {
 		return nil, err
 	}

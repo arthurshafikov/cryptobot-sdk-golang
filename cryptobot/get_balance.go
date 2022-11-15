@@ -2,8 +2,8 @@ package cryptobot
 
 import "fmt"
 
-type GetBalanceResponse struct {
-	Response
+type getBalanceResponse struct {
+	response
 	Result Balance `json:"result"`
 }
 
@@ -23,7 +23,7 @@ func (c *Client) GetBalance() (Balance, error) {
 	}
 	defer responseBodyReader.Close()
 
-	var response GetBalanceResponse
+	var response getBalanceResponse
 	if err := c.decodeResponse(responseBodyReader, &response); err != nil {
 		return nil, err
 	}

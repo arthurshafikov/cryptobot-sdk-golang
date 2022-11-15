@@ -2,8 +2,8 @@ package cryptobot
 
 import "fmt"
 
-type GetExchangeRatesResponse struct {
-	Response
+type getExchangeRatesResponse struct {
+	response
 	Result ExchangeRates `json:"result"`
 }
 
@@ -26,7 +26,7 @@ func (c *Client) GetExchangeRates() (ExchangeRates, error) {
 	}
 	defer responseBodyReader.Close()
 
-	var response GetExchangeRatesResponse
+	var response getExchangeRatesResponse
 	if err := c.decodeResponse(responseBodyReader, &response); err != nil {
 		return nil, err
 	}
