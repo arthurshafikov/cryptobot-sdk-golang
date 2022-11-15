@@ -2,6 +2,7 @@ package cryptobot
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -62,7 +63,7 @@ func (c *Client) getRequestUrl() string {
 func (c *Client) request(path string, queryModifierFunc func(q url.Values) url.Values) (io.ReadCloser, error) {
 	req, err := http.NewRequest(http.MethodGet, c.getRequestUrl()+path, nil)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error while creating a request: %w", err)
 	}
 	if queryModifierFunc != nil {
 		req.URL.RawQuery = queryModifierFunc(req.URL.Query()).Encode()
@@ -71,7 +72,7 @@ func (c *Client) request(path string, queryModifierFunc func(q url.Values) url.V
 	req.Header.Set(apiTokenHeaderName, c.apiToken)
 	r, err := c.httpClient.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error while performing a request: %w", err)
 	}
 
 	return r.Body, nil
@@ -80,10 +81,10 @@ func (c *Client) request(path string, queryModifierFunc func(q url.Values) url.V
 func (c *Client) decodeResponse(responseBodyReader io.Reader, targetPointer any) error {
 	responseBody, err := ioutil.ReadAll(responseBodyReader)
 	if err != nil {
-		return err
+		return fmt.Errorf("error while decoding response: %w", err)
 	}
 	if err := json.Unmarshal(responseBody, targetPointer); err != nil {
-		return err
+		return fmt.Errorf("error while unmarshaling response to the target: %w", err)
 	}
 
 	return nil
