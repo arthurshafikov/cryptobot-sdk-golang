@@ -26,12 +26,16 @@ type GetInvoicesRequest struct {
 
 type GetInvoicesResponse struct {
 	Response
-	Result []Invoice `json:"result"`
+	Result Invoices `json:"result"`
+}
+
+type Invoices struct {
+	Items []Invoice `json:"items"`
 }
 
 // Use this method to get invoices of your app. On success, returns slice of invoices.
 func (c *Client) GetInvoices(getInvoicesRequest *GetInvoicesRequest) ([]Invoice, error) {
-	responseBodyReader, err := c.request("transfer", func(q url.Values) url.Values {
+	responseBodyReader, err := c.request("getInvoices", func(q url.Values) url.Values {
 		if getInvoicesRequest.Asset != "" {
 			q.Add("asset", getInvoicesRequest.Asset)
 		}
@@ -59,9 +63,10 @@ func (c *Client) GetInvoices(getInvoicesRequest *GetInvoicesRequest) ([]Invoice,
 	if err := c.decodeResponse(responseBodyReader, &response); err != nil {
 		return nil, err
 	}
+	fmt.Printf("%#v\n", response)
 
 	if response.Ok {
-		return response.Result, nil
+		return response.Result.Items, nil
 	} else {
 		return nil, fmt.Errorf("getInvoices request error: code - %v, name - %s", response.Error.Code, response.Error.Name)
 	}

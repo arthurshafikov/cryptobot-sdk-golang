@@ -15,8 +15,8 @@ func main() {
 	getCurrencies(client)
 	getExchangeRates(client)
 	getMe(client)
+	getInvoices(client)
 
 	// these methods are disabled in test mode
 	transfer(client)
-	getInvoices(client)
 }
