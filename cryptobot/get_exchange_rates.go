@@ -19,7 +19,7 @@ type ExchangeRate struct {
 }
 
 // Use this method to get exchange rates of supported currencies. Returns slice of exchange rates.
-func (c *Client) GetExchangeRates() (*ExchangeRates, error) {
+func (c *Client) GetExchangeRates() (ExchangeRates, error) {
 	responseBodyReader, err := c.request("getExchangeRates", nil)
 	if err != nil {
 		return nil, err
@@ -32,7 +32,7 @@ func (c *Client) GetExchangeRates() (*ExchangeRates, error) {
 	}
 
 	if response.Ok {
-		return &response.Result, nil
+		return response.Result, nil
 	} else {
 		return nil, fmt.Errorf("getExchangeRates request error: code - %v, name - %s", response.Error.Code, response.Error.Name)
 	}

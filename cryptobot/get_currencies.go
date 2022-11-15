@@ -23,7 +23,7 @@ type Currency struct {
 }
 
 // Use this method to get a list of supported currencies. Returns slice of currencies.
-func (c *Client) GetCurrencies() (*Currencies, error) {
+func (c *Client) GetCurrencies() (Currencies, error) {
 	responseBodyReader, err := c.request("getCurrencies", nil)
 	if err != nil {
 		return nil, err
@@ -36,7 +36,7 @@ func (c *Client) GetCurrencies() (*Currencies, error) {
 	}
 
 	if response.Ok {
-		return &response.Result, nil
+		return response.Result, nil
 	} else {
 		return nil, fmt.Errorf("getCurrencies request error: code - %v, name - %s", response.Error.Code, response.Error.Name)
 	}
