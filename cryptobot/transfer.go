@@ -37,7 +37,7 @@ type transferResponse struct {
 }
 
 // Use this method to send coins from your app's balance to a user. On success, returns struct of completed transfer.
-func (c *Client) Transfer(transferRequest *TransferRequest) (*Transfer, error) {
+func (c *Client) Transfer(transferRequest TransferRequest) (*Transfer, error) {
 	responseBodyReader, err := c.request("transfer", func(q url.Values) url.Values {
 		q.Add("user_id", strconv.FormatInt(transferRequest.UserID, 10))
 		q.Add("asset", transferRequest.Asset)
