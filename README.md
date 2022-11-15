@@ -1,5 +1,6 @@
 # Cryptobot Sdk Golang
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/arthurshafikov/cryptobot-sdk-golang.svg)](https://pkg.go.dev/github.com/arthurshafikov/cryptobot-sdk-golang)
 [![Go Report Card](https://goreportcard.com/badge/github.com/arthurshafikov/cryptobot-sdk-golang)](https://goreportcard.com/report/github.com/arthurshafikov/cryptobot-sdk-golang)
 ![Tests](https://github.com/arthurshafikov/cryptobot-sdk-golang/actions/workflows/tests.yml/badge.svg)
 ![License](https://img.shields.io/github/license/arthurshafikov/cryptobot-sdk-golang)
@@ -160,7 +161,8 @@ fmt.Printf(
 
 # Documentation
 
-Check out official [documentation](https://help.crypt.bot/crypto-pay-api)
+Check out this repository [documentation](https://pkg.go.dev/github.com/arthurshafikov/cryptobot-sdk-golang/cryptobot)
+Check out official CryptoBot [documentation](https://help.crypt.bot/crypto-pay-api)
 
 # Troubleshooting
 
