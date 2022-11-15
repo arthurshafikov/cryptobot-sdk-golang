@@ -24,7 +24,7 @@ type Client struct {
 	httpClient *http.Client
 }
 
-type Deps struct {
+type Options struct {
 	// API Token of your CryptoBot app (token from CryptoTestnetBot can also be used)
 	APIToken string
 
@@ -35,15 +35,15 @@ type Deps struct {
 	ClientTimeout time.Duration
 }
 
-func NewClient(deps Deps) *Client {
+func NewClient(options Options) *Client {
 	c := &Client{
-		testingMode: deps.Testing,
-		apiToken:    deps.APIToken,
+		testingMode: options.Testing,
+		apiToken:    options.APIToken,
 	}
 
 	clientTimeout := time.Second * 30
-	if deps.ClientTimeout != 0 {
-		clientTimeout = deps.ClientTimeout
+	if options.ClientTimeout != 0 {
+		clientTimeout = options.ClientTimeout
 	}
 	c.httpClient = &http.Client{
 		Timeout: clientTimeout,
