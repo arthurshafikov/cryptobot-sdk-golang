@@ -7,30 +7,31 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+var expectedInvoice = Invoice{
+	ID:              123,
+	Status:          "paid",
+	Hash:            "someHash",
+	Asset:           "USDT",
+	Amount:          "100",
+	Fee:             "2",
+	PayUrl:          "some-pay-url",
+	Description:     "some description",
+	CreatedAt:       "2022-11-24T05:29:38.495Z",
+	UsdRate:         "usdRate",
+	AllowComments:   false,
+	AllowAnonymous:  false,
+	ExpirationDate:  "2022-11-30T05:29:38.495Z",
+	PaidAt:          "2022-11-28T05:29:38.495Z",
+	PaidAnonymously: false,
+	Comment:         "some comment",
+	HiddenMessage:   "some message",
+	Payload:         "some payload",
+	PaidBtnName:     "btn name",
+	PaidBtnUrl:      "btn url",
+}
+
 func TestCreateInvoice(t *testing.T) {
 	c := getTestClient(t)
-	expectedInvoice := Invoice{
-		ID:              123,
-		Status:          "paid",
-		Hash:            "someHash",
-		Asset:           "USDT",
-		Amount:          "100",
-		Fee:             "2",
-		PayUrl:          "some-pay-url",
-		Description:     "some description",
-		CreatedAt:       "2022-11-24T05:29:38.495Z",
-		UsdRate:         "usdRate",
-		AllowComments:   false,
-		AllowAnonymous:  false,
-		ExpirationDate:  "2022-11-30T05:29:38.495Z",
-		PaidAt:          "2022-11-28T05:29:38.495Z",
-		PaidAnonymously: false,
-		Comment:         "some comment",
-		HiddenMessage:   "some message",
-		Payload:         "some payload",
-		PaidBtnName:     "btn name",
-		PaidBtnUrl:      "btn url",
-	}
 	expectedResponse := createInvoiceResponse{
 		response: response{
 			Ok: true,

@@ -36,20 +36,22 @@ type invoices struct {
 // Use this method to get invoices of your app. On success, returns slice of invoices.
 func (c *Client) GetInvoices(getInvoicesRequest *GetInvoicesRequest) ([]Invoice, error) {
 	responseBodyReader, err := c.request("getInvoices", func(q url.Values) url.Values {
-		if getInvoicesRequest.Asset != "" {
-			q.Add("asset", getInvoicesRequest.Asset)
-		}
-		if getInvoicesRequest.InvoiceIDs != "" {
-			q.Add("invoice_ids", getInvoicesRequest.InvoiceIDs)
-		}
-		if getInvoicesRequest.Status != "" {
-			q.Add("status", getInvoicesRequest.Status)
-		}
-		if getInvoicesRequest.Offset != 0 {
-			q.Add("offset", strconv.Itoa(getInvoicesRequest.Offset))
-		}
-		if getInvoicesRequest.Count != 0 {
-			q.Add("count", strconv.Itoa(getInvoicesRequest.Offset))
+		if getInvoicesRequest != nil {
+			if getInvoicesRequest.Asset != "" {
+				q.Add("asset", getInvoicesRequest.Asset)
+			}
+			if getInvoicesRequest.InvoiceIDs != "" {
+				q.Add("invoice_ids", getInvoicesRequest.InvoiceIDs)
+			}
+			if getInvoicesRequest.Status != "" {
+				q.Add("status", getInvoicesRequest.Status)
+			}
+			if getInvoicesRequest.Offset != 0 {
+				q.Add("offset", strconv.Itoa(getInvoicesRequest.Offset))
+			}
+			if getInvoicesRequest.Count != 0 {
+				q.Add("count", strconv.Itoa(getInvoicesRequest.Count))
+			}
 		}
 
 		return q
