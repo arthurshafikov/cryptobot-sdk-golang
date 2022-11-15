@@ -88,26 +88,12 @@ func TestCreateInvoiceReturnsError(t *testing.T) {
 		MatchHeader(apiTokenHeaderName, testToken).
 		MatchParam("asset", "USDT").
 		MatchParam("amount", "100").
-		MatchParam("description", "some description").
-		MatchParam("hidden_message", "some message").
-		MatchParam("paid_btn_name", "btn name").
-		MatchParam("paid_btn_url", "btn url").
-		MatchParam("payload", "some payload").
-		MatchParam("expires_in", "123123").
 		Reply(200).
 		JSON(expectedResponse)
 
 	invoice, err := c.CreateInvoice(CreateInvoiceRequest{
-		Asset:          "USDT",
-		Amount:         "100",
-		Description:    "some description",
-		HiddenMessage:  "some message",
-		PaidBtnName:    "btn name",
-		PaidBtnUrl:     "btn url",
-		Payload:        "some payload",
-		AllowComments:  true,
-		AllowAnonymous: true,
-		ExpiresIn:      123123,
+		Asset:  "USDT",
+		Amount: "100",
 	})
 	require.Nil(t, invoice)
 	require.ErrorContains(t, err, "createInvoice request error: code - 403, name - Forbidden")
