@@ -13,11 +13,11 @@ func createInvoice(client *cryptobot.Client) {
 		Amount:         "125.50",
 		Description:    "Description for the user",
 		HiddenMessage:  "After invoice is paid user will see this message",
-		PaidBtnName:    "",
-		PaidBtnUrl:     "",
+		PaidBtnName:    "", // optional. one of these viewItem, openChannel, openBot, callback
+		PaidBtnUrl:     "", // URL to be opened when the PaidBtn is pressed
 		Payload:        "any payload we need in out application",
-		AllowComments:  true,
-		AllowAnonymous: false,
+		AllowComments:  false,  // Allow a user to add a comment to the payment. Default is true
+		AllowAnonymous: false,  // Allow a user to pay the invoice anonymously. Default is true.
 		ExpiresIn:      60 * 5, // invoice will expire in 5 minutes
 	})
 	if err != nil {

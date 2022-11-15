@@ -7,12 +7,13 @@ import (
 )
 
 func getInvoices(client *cryptobot.Client) {
+	// GetInvoicesRequest argument is completely optional here
 	invoices, err := client.GetInvoices(&cryptobot.GetInvoicesRequest{
-		Asset:      "",
-		InvoiceIDs: "",
-		Status:     "",
+		Asset:      "USDT",
+		InvoiceIDs: "1,2,3",
+		Status:     "active",
 		Offset:     0,
-		Count:      100,
+		Count:      20,
 	})
 	if err != nil {
 		log.Fatalln(err)

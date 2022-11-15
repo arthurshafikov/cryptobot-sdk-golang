@@ -10,10 +10,10 @@ import (
 func transfer(client *cryptobot.Client) {
 	transfer, err := client.Transfer(cryptobot.TransferRequest{
 		UserID:                  1,
-		Asset:                   "",
-		Amount:                  "",
+		Asset:                   "TON",
+		Amount:                  "10.5",
 		SpendID:                 "",
-		Comment:                 "",
+		Comment:                 "Debt",
 		DisableSendNotification: false,
 	})
 	if err != nil {
