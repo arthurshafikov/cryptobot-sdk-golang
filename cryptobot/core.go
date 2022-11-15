@@ -13,7 +13,7 @@ type ResponseError struct {
 
 type Invoice struct {
 	// Unique ID for this invoice.
-	InvoiceID int64 `json:"invoice_id"`
+	ID int64 `json:"invoice_id"`
 
 	// Status of the invoice, can be either “active”, “paid” or “expired”.
 	Status string `json:"status"`
@@ -75,7 +75,7 @@ type Invoice struct {
 
 type Transfer struct {
 	//Unique ID for this transfer.
-	TransferID int64 `json:"transfer_id"`
+	ID int64 `json:"transfer_id"`
 
 	//Telegram user ID the transfer was sent to.
 	UserID string `json:"user_id"`
