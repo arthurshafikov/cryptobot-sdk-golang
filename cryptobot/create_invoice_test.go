@@ -54,7 +54,7 @@ func TestCreateInvoice(t *testing.T) {
 		Reply(200).
 		JSON(expectedResponse)
 
-	invoice, err := c.CreateInvoice(&CreateInvoiceRequest{
+	invoice, err := c.CreateInvoice(CreateInvoiceRequest{
 		Asset:          "USDT",
 		Amount:         "100",
 		Description:    "some description",
@@ -96,7 +96,7 @@ func TestCreateInvoiceReturnsError(t *testing.T) {
 		Reply(200).
 		JSON(expectedResponse)
 
-	invoice, err := c.CreateInvoice(&CreateInvoiceRequest{
+	invoice, err := c.CreateInvoice(CreateInvoiceRequest{
 		Asset:          "USDT",
 		Amount:         "100",
 		Description:    "some description",

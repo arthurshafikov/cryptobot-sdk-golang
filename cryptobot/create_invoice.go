@@ -50,7 +50,7 @@ type createInvoiceResponse struct {
 }
 
 // Use this method to create a new invoice. On success, returns an object of the created invoice.
-func (c *Client) CreateInvoice(createInvoiceRequest *CreateInvoiceRequest) (*Invoice, error) {
+func (c *Client) CreateInvoice(createInvoiceRequest CreateInvoiceRequest) (*Invoice, error) {
 	responseBodyReader, err := c.request("createInvoice", func(q url.Values) url.Values {
 		q.Add("asset", createInvoiceRequest.Asset)
 		q.Add("amount", createInvoiceRequest.Amount)

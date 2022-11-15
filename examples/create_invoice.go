@@ -8,7 +8,7 @@ import (
 )
 
 func createInvoice(client *cryptobot.Client) {
-	invoice, err := client.CreateInvoice(&cryptobot.CreateInvoiceRequest{
+	invoice, err := client.CreateInvoice(cryptobot.CreateInvoiceRequest{
 		Asset:          "USDT",
 		Amount:         "125.50",
 		Description:    "Description for the user",
