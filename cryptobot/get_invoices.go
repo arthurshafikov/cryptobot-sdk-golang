@@ -65,7 +65,6 @@ func (c *Client) GetInvoices(getInvoicesRequest *GetInvoicesRequest) ([]Invoice,
 	if err := c.decodeResponse(responseBodyReader, &response); err != nil {
 		return nil, err
 	}
-	fmt.Printf("%#v\n", response)
 
 	if response.Ok {
 		return response.Result.Items, nil
