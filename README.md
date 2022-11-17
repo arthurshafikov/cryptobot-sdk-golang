@@ -159,6 +159,29 @@ fmt.Printf(
 )
 ```
 
+## [WebhookExample](examples/webhook.go) 
+
+```golang
+requestBody := []byte(`someJSONRequestBodyContent`)
+
+webhookUpdate, err := cryptobot.ParseWebhookUpdate(requestBody)
+if err != nil {
+    log.Fatalln(err)
+}
+
+switch webhookUpdate.UpdateType {
+case cryptobot.InvoicePaidWebhookUpdateType:
+    invoice, err := cryptobot.ParseInvoice(requestBody)
+    if err != nil {
+        log.Fatalln(err)
+    }
+
+    showInvoiceInfo(invoice)
+default:
+    log.Fatalln("unsupported webhook update type " + webhookUpdate.UpdateType)
+}
+```
+
 # Documentation
 
 Check out this repository [documentation](https://pkg.go.dev/github.com/arthurshafikov/cryptobot-sdk-golang/cryptobot)
