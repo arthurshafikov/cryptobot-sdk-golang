@@ -13,7 +13,7 @@ func TestGetExchangeRates(t *testing.T) {
 		{
 			IsValid: true,
 			Rate:    "16836.58000000",
-			Source:  "BTC",
+			Source:  BTC,
 			Target:  "USD",
 		},
 	}

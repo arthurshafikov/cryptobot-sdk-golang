@@ -46,7 +46,7 @@ func main() {
 
 ```golang
 invoice, err := client.CreateInvoice(cryptobot.CreateInvoiceRequest{
-    Asset:          "USDT",
+    Asset:          cryptobot.USDT,
     Amount:         "125.50",
     Description:    "Description for the user",
     HiddenMessage:  "After invoice is paid user will see this message",
@@ -121,7 +121,7 @@ for _, exchangeRate := range exchangeRates {
 ```golang
 // GetInvoicesRequest argument is completely optional here
 invoices, err := client.GetInvoices(&cryptobot.GetInvoicesRequest{
-    Asset:      "USDT",
+    Asset:      cryptobot.USDT,
     InvoiceIDs: "1,2,3",
     Status:     "active",
     Offset:     0,
@@ -137,7 +137,7 @@ if err != nil {
 ```golang
 transfer, err := client.Transfer(cryptobot.TransferRequest{
     UserID:                  1,
-    Asset:                   "TON",
+    Asset:                   cryptobot.TON,
     Amount:                  "10.5",
     SpendID:                 "",
     Comment:                 "Debt",
@@ -176,7 +176,9 @@ case cryptobot.InvoicePaidWebhookUpdateType:
         log.Fatalln(err)
     }
 
-    showInvoiceInfo(invoice)
+    if invoice.Status == cryptobot.InvoiceActiveStatus {
+        showInvoiceInfo(invoice)
+    }
 default:
     log.Fatalln("unsupported webhook update type " + webhookUpdate.UpdateType)
 }

@@ -11,7 +11,7 @@ var expectedTransfer = Transfer{
 	ID:          123,
 	UserID:      "123123",
 	Status:      "paid",
-	Asset:       "USDT",
+	Asset:       USDT,
 	Amount:      "100",
 	Comment:     "someComment",
 	CompletedAt: "2022-11-24T05:29:38.495Z",
@@ -29,7 +29,7 @@ func TestTransfer(t *testing.T) {
 	gock.New(testnetAPIURL).
 		Get("/transfer").
 		MatchHeader(apiTokenHeaderName, testToken).
-		MatchParam("asset", "USDT").
+		MatchParam("asset", USDT).
 		MatchParam("amount", "100").
 		MatchParam("user_id", "123123").
 		MatchParam("spend_id", "someSpendID").
@@ -39,7 +39,7 @@ func TestTransfer(t *testing.T) {
 		JSON(expectedResponse)
 
 	transfer, err := c.Transfer(TransferRequest{
-		Asset:                   "USDT",
+		Asset:                   USDT,
 		Amount:                  "100",
 		UserID:                  123123,
 		SpendID:                 "someSpendID",
@@ -65,7 +65,7 @@ func TestTransferReturnsError(t *testing.T) {
 	gock.New(testnetAPIURL).
 		Get("/transfer").
 		MatchHeader(apiTokenHeaderName, testToken).
-		MatchParam("asset", "USDT").
+		MatchParam("asset", USDT).
 		MatchParam("amount", "100").
 		MatchParam("user_id", "123123").
 		MatchParam("spend_id", "someSpendID").
@@ -73,7 +73,7 @@ func TestTransferReturnsError(t *testing.T) {
 		JSON(expectedResponse)
 
 	transfer, err := c.Transfer(TransferRequest{
-		Asset:   "USDT",
+		Asset:   USDT,
 		Amount:  "100",
 		UserID:  123123,
 		SpendID: "someSpendID",

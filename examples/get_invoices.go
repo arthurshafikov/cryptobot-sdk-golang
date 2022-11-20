@@ -9,7 +9,7 @@ import (
 func getInvoices(client *cryptobot.Client) {
 	// GetInvoicesRequest argument is completely optional here
 	invoices, err := client.GetInvoices(&cryptobot.GetInvoicesRequest{
-		Asset:      "USDT",
+		Asset:      cryptobot.USDT,
 		InvoiceIDs: "1,2,3",
 		Status:     "active",
 		Offset:     0,

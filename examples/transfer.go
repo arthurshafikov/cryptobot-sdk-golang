@@ -10,7 +10,7 @@ import (
 func transfer(client *cryptobot.Client) {
 	transfer, err := client.Transfer(cryptobot.TransferRequest{
 		UserID:                  1,
-		Asset:                   "TON",
+		Asset:                   cryptobot.TON,
 		Amount:                  "10.5",
 		SpendID:                 "",
 		Comment:                 "Debt",

@@ -79,7 +79,7 @@ func TestDecodeResponse(t *testing.T) {
 	expectedTransfer := Transfer{
 		ID:          123,
 		UserID:      "1234",
-		Asset:       "USDT",
+		Asset:       USDT,
 		Amount:      "200",
 		Status:      "paid",
 		CompletedAt: "",

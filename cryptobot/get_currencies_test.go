@@ -11,7 +11,7 @@ func TestGetCurrencies(t *testing.T) {
 	c := getTestClient(t)
 	expectedCurrencies := Currencies{
 		{
-			Code:         "BTC",
+			Code:         BTC,
 			Decimals:     8,
 			IsBlockchain: true,
 			Name:         "Bitcoin",

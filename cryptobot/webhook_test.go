@@ -29,7 +29,7 @@ func TestParseInvoice(t *testing.T) {
 		"fee":"2","pay_url":"some-pay-url","description":"some description","created_at":"2022-11-24T05:29:38.495Z",
 		"usd_rate":"usdRate","allow_comments":false,"allow_anonymous":false,"expiration_date":"2022-11-30T05:29:38.495Z",
 		"paid_at":"2022-11-28T05:29:38.495Z","paid_anonymously":false,"comment":"some comment","hidden_message":"some message",
-		"payload":"some payload","paid_btn_name":"btn name","paid_btn_url":"btn url"}}`)
+		"payload":"some payload","paid_btn_name":"callback","paid_btn_url":"btn url"}}`)
 
 	invoice, err := ParseInvoice(data)
 	require.NoError(t, err)

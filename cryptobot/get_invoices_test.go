@@ -27,7 +27,7 @@ func TestGetInvoices(t *testing.T) {
 	gock.New(testnetAPIURL).
 		Get("/getInvoices").
 		MatchHeader(apiTokenHeaderName, testToken).
-		MatchParam("asset", "USDT").
+		MatchParam("asset", USDT).
 		MatchParam("invoice_ids", "1,2,3").
 		MatchParam("status", "paid").
 		MatchParam("offset", "2").
@@ -36,7 +36,7 @@ func TestGetInvoices(t *testing.T) {
 		JSON(expectedResponse)
 
 	invoices, err := c.GetInvoices(&GetInvoicesRequest{
-		Asset:      "USDT",
+		Asset:      USDT,
 		InvoiceIDs: "1,2,3",
 		Status:     "paid",
 		Offset:     2,

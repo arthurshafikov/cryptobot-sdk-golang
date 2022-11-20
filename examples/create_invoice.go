@@ -9,7 +9,7 @@ import (
 
 func createInvoice(client *cryptobot.Client) {
 	invoice, err := client.CreateInvoice(cryptobot.CreateInvoiceRequest{
-		Asset:          "USDT",
+		Asset:          cryptobot.USDT,
 		Amount:         "125.50",
 		Description:    "Description for the user",
 		HiddenMessage:  "After invoice is paid user will see this message",

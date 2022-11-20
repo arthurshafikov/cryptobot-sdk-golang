@@ -1,5 +1,24 @@
 package cryptobot
 
+const (
+	InvoicePaidStatus    = "paid"
+	InvoiceActiveStatus  = "active"
+	InvoiceExpiredStatus = "expired"
+
+	BTC  = "BTC"
+	TON  = "TON"
+	ETH  = "ETH"
+	USDT = "USDT"
+	USDC = "USDC"
+	BUSD = "BUSD"
+
+	InvoiceViewItemPaidBtnName    = "viewItem"
+	InvoiceOpenChannelPaidBtnName = "openChannel"
+	InvoiceCallbackPaidBtnName    = "callback"
+
+	TransferCompleteStatus = "completed"
+)
+
 type response struct {
 	Ok     bool          `json:"ok"`
 	Result any           `json:"result"`
@@ -66,7 +85,7 @@ type Invoice struct {
 	// Optional. Previously provided data for this invoice.
 	Payload string `json:"payload"`
 
-	// Optional. Name of the button, can be “viewItem”, “openChannel”, “openChannel” or “callback”.
+	// Optional. Name of the button, can be “viewItem”, “openChannel” or “callback”.
 	PaidBtnName string `json:"paid_btn_name"`
 
 	// Optional. URL of the button.
@@ -74,24 +93,24 @@ type Invoice struct {
 }
 
 type Transfer struct {
-	//Unique ID for this transfer.
+	// Unique ID for this transfer.
 	ID int64 `json:"transfer_id"`
 
-	//Telegram user ID the transfer was sent to.
+	// Telegram user ID the transfer was sent to.
 	UserID string `json:"user_id"`
 
-	//Currency code. Currently, can be “BTC”, “TON”, “ETH”, “USDT”, “USDC” or “BUSD”.
+	// Currency code. Currently, can be “BTC”, “TON”, “ETH”, “USDT”, “USDC” or “BUSD”.
 	Asset string `json:"asset"`
 
-	//Amount of the transfer.
+	// Amount of the transfer.
 	Amount string `json:"amount"`
 
-	//Status of the transfer, can be “completed”.
+	// Status of the transfer, can be “completed”.
 	Status string `json:"status"`
 
-	//Date the transfer was completed in ISO 8601 format.
+	// Date the transfer was completed in ISO 8601 format.
 	CompletedAt string `json:"completed_at"`
 
-	//Optional. Comment for this transfer.
+	// Optional. Comment for this transfer.
 	Comment string `json:"comment"`
 }

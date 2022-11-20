@@ -12,11 +12,11 @@ func TestGetBalance(t *testing.T) {
 	expectedBalance := Balance{
 		{
 			Available:    "12",
-			CurrencyCode: "USDT",
+			CurrencyCode: USDT,
 		},
 		{
 			Available:    "0.0026",
-			CurrencyCode: "BTC",
+			CurrencyCode: BTC,
 		},
 	}
 	expectedResponse := getBalanceResponse{

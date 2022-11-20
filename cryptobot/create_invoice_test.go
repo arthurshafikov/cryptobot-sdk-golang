@@ -9,9 +9,9 @@ import (
 
 var expectedInvoice = Invoice{
 	ID:              123,
-	Status:          "paid",
+	Status:          InvoicePaidStatus,
 	Hash:            "someHash",
-	Asset:           "USDT",
+	Asset:           USDT,
 	Amount:          "100",
 	Fee:             "2",
 	PayUrl:          "some-pay-url",
@@ -26,7 +26,7 @@ var expectedInvoice = Invoice{
 	Comment:         "some comment",
 	HiddenMessage:   "some message",
 	Payload:         "some payload",
-	PaidBtnName:     "btn name",
+	PaidBtnName:     InvoiceCallbackPaidBtnName,
 	PaidBtnUrl:      "btn url",
 }
 
@@ -42,11 +42,11 @@ func TestCreateInvoice(t *testing.T) {
 	gock.New(testnetAPIURL).
 		Get("/createInvoice").
 		MatchHeader(apiTokenHeaderName, testToken).
-		MatchParam("asset", "USDT").
+		MatchParam("asset", USDT).
 		MatchParam("amount", "100").
 		MatchParam("description", "some description").
 		MatchParam("hidden_message", "some message").
-		MatchParam("paid_btn_name", "btn name").
+		MatchParam("paid_btn_name", InvoiceCallbackPaidBtnName).
 		MatchParam("paid_btn_url", "btn url").
 		MatchParam("payload", "some payload").
 		MatchParam("allow_comments", "false").
@@ -56,11 +56,11 @@ func TestCreateInvoice(t *testing.T) {
 		JSON(expectedResponse)
 
 	invoice, err := c.CreateInvoice(CreateInvoiceRequest{
-		Asset:          "USDT",
+		Asset:          USDT,
 		Amount:         "100",
 		Description:    "some description",
 		HiddenMessage:  "some message",
-		PaidBtnName:    "btn name",
+		PaidBtnName:    InvoiceCallbackPaidBtnName,
 		PaidBtnUrl:     "btn url",
 		Payload:        "some payload",
 		AllowComments:  false,
@@ -86,13 +86,13 @@ func TestCreateInvoiceReturnsError(t *testing.T) {
 	gock.New(testnetAPIURL).
 		Get("/createInvoice").
 		MatchHeader(apiTokenHeaderName, testToken).
-		MatchParam("asset", "USDT").
+		MatchParam("asset", USDT).
 		MatchParam("amount", "100").
 		Reply(200).
 		JSON(expectedResponse)
 
 	invoice, err := c.CreateInvoice(CreateInvoiceRequest{
-		Asset:  "USDT",
+		Asset:  USDT,
 		Amount: "100",
 	})
 	require.Nil(t, invoice)

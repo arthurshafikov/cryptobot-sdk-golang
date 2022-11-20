@@ -27,7 +27,9 @@ func parseWebhook() {
 			log.Fatalln(err)
 		}
 
-		showInvoiceInfo(invoice)
+		if invoice.Status == cryptobot.InvoiceActiveStatus {
+			showInvoiceInfo(invoice)
+		}
 	default:
 		log.Fatalln("unsupported webhook update type " + webhookUpdate.UpdateType)
 	}
