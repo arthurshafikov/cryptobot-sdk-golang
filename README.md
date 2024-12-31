@@ -1,4 +1,6 @@
-# CryptoBot SDK Golang
+# 🗃 The package is archived and won't be updated at any time in the future
+
+## CryptoBot SDK Golang
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/arthurshafikov/cryptobot-sdk-golang.svg)](https://pkg.go.dev/github.com/arthurshafikov/cryptobot-sdk-golang)
 [![Go Report Card](https://goreportcard.com/badge/github.com/arthurshafikov/cryptobot-sdk-golang)](https://goreportcard.com/report/github.com/arthurshafikov/cryptobot-sdk-golang)
